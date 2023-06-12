@@ -9,7 +9,7 @@ WORKDIR /app
 COPY src /app/src
 
 # 将pom.xml文件，拷贝到工作目录下
-COPY settings.xml pom.xml wechaty_token_gateway_padlocal.sh start.sh /app/
+COPY settings.xml pom.xml  /app/
 
 # 执行代码编译命令
 # 自定义settings.xml, 选用国内镜像源以提高下载速度
@@ -32,6 +32,7 @@ RUN apk add ca-certificates
 
 # 指定运行时的工作目录
 WORKDIR /app
+COPY wechaty_token_gateway_padlocal.sh start.sh /app/
 
 # 将构建产物jar包拷贝到运行时目录中
 COPY --from=build /app/target/*.jar .
